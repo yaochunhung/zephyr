@@ -32,10 +32,18 @@ static ALWAYS_INLINE
 atomic_val_t xtensa_cas(atomic_t *addr, atomic_val_t oldval,
 			atomic_val_t newval)
 {
-	__asm__ volatile("wsr %1, SCOMPARE1; s32c1i %0, %2, 0"
-			 : "+r"(newval), "+r"(oldval) : "r"(addr) : "memory");
-
-	return newval; /* got swapped with the old memory by s32c1i */
+#if XCHAL_HAVE_EXCLUSIVE
+    atomic_val_t tmp;
+    __asm__ volatile("l32ex %1, %3; s32ex %0, %3; getex %2"
+         : "+r"(newval), "+r"(oldval), "=r"(tmp) : "r"(addr) : "memory");
+    return !tmp ? oldval : newval;
+#elif XCHAL_HAVE_S32C1I
+    __asm__ volatile("wsr %1, SCOMPARE1; s32c1i %0, %2, 0"
+             : "+r"(newval), "+r"(oldval) : "r"(addr) : "memory");
+    return newval; /* got swapped with the old memory by s32c1i */
+#else
+#warn "Warning: Neither XCHAL_HAVE_EXCLUSIVE nor XCHAL_HAVE_S32C1I is configured"
+#endif
 }
 
 static ALWAYS_INLINE

@@ -1,0 +1,10 @@
+identifier: mediatek_adsp_mt8195
+name: MT8195 ADSP
+type: mcu
+arch: xtensa
+toolchain:
+  - zephyr
+testing:
+  only_tags:
+     - kernel
+     - sof

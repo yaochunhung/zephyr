@@ -306,8 +306,11 @@ _do_call_\@:
 	 * execution) while we muck with the windows and decrement the nested
 	 * count.  The restore will unmask them correctly.
 	 */
+#if XCHAL_NMILEVEL  //YC_TEST only
 	rsil a0, XCHAL_NMILEVEL
-
+#else
+	rsil a0, (XCHAL_NUM_INTLEVELS+1)
+#endif
 	/* Decrement nest count */
 	rsr.\SR a3
 	l32i a0, a3, \NEST_OFF

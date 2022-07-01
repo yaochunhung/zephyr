@@ -1,0 +1,18 @@
+/*
+ * Copyright (c) 2022 MediaTek
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+
+#include <mediatek/mediatek_mt8195.dtsi>
+
+/ {
+	model = "mediatek_adsp_mt8195";
+	compatible = "mediatek";
+
+	chosen {
+		zephyr,sram = &sram0;
+	};
+};

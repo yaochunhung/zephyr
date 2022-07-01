@@ -1,0 +1,19 @@
+# MediaTek SoC family configuration options
+#
+# Copyright (c) 2022 MediaTek
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_FAMILY_MEDIATEK_ADSP
+	bool
+	select ARCH_HAS_COHERENCE
+
+if SOC_FAMILY_MEDIATEK_ADSP
+
+config SOC_FAMILY
+	string
+	default "mediatek_adsp"
+
+# Select SoC Part No. and configuration options
+source "soc/xtensa/mediatek_adsp/*/Kconfig.soc"
+
+endif # SOC_FAMILY_MEDIATEK_ADSP

@@ -1,0 +1,6 @@
+# MediaTek SoC family default configuration options
+#
+# Copyright (c) 2022 MediaTek
+# SPDX-License-Identifier: Apache-2.0
+
+source "soc/xtensa/mediatek_adsp/*/Kconfig.defconfig.series"

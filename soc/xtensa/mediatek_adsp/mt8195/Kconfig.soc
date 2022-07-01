@@ -1,0 +1,11 @@
+# Copyright (c) 2022 MediaTek
+# SPDX-License-Identifier: Apache-2.0
+
+choice
+	prompt "MediaTek MT8195 SoC Selection"
+
+	config SOC_MT8195
+		bool "MT8195 SoC"
+		depends on SOC_SERIES_MEDIATEK_MT8195
+
+endchoice

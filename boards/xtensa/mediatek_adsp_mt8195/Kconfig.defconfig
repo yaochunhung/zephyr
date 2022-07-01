@@ -1,0 +1,15 @@
+# Copyright (c) 2022 MediaTek
+#
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_MTK_ADSP_MT8195
+
+config BOARD
+	default "mediatek_adsp_mt8195"
+
+config DUMMY_DMA
+	bool
+	default y
+	depends on DMA
+
+endif # BOARD_MTK_ADSP_MT8195
